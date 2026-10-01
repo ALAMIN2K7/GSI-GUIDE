@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSI-GUIDE — Android GSI Flashing Guide</title>
+<meta name="description" content="A clean Android GSI flashing guide with Fastboot commands and troubleshooting.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar glass">
+  <a class="logo" href="#home"><span class="logo-icon">G</span><span class="logo-text">GSI<span>-GUIDE</span></span></a>
+  <a class="github-btn" href="https://github.com/ALAMIN2K7" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.09 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.62-2.81 5.64-5.48 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z"/></svg>
+  </a>
+</header>
+
+<main id="home">
+<section class="hero"><div class="container"><div class="hero-banner">
+  <img src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&w=1400&q=85" alt="Android GSI">
+  <p>A simple and reliable guide for installing Android GSIs.</p>
+</div></div></section>
+
+<section id="guide"><div class="container">
+  <div class="section-heading"><div class="section-label">COMPLETE INSTALLATION GUIDE</div><h2>Prepare. Check. Flash.</h2><p>Follow each step carefully before flashing a GSI. Make sure your device supports Project Treble and keep a complete backup of your important data.</p></div>
+
+  <article class="guide-section glass"><div class="guide-top"><div class="guide-number">01</div><div><div class="guide-label">PHONE PREPARATION</div><h3>Prepare your Android phone</h3></div></div><div class="guide-content">
+    <p>Before connecting your phone to the PC, make sure the device is properly prepared for GSI installation.</p>
+    <div class="guide-checklist">
+      <div class="check-item"><span>01</span><div><strong>Unlock the Bootloader</strong><p>Your device bootloader must be unlocked before flashing a custom system image.</p></div></div>
+      <div class="check-item"><span>02</span><div><strong>Enable Developer Options</strong><p>Open Settings → About Phone and tap Build Number several times to enable Developer Options.</p></div></div>
+      <div class="check-item"><span>03</span><div><strong>Enable USB Debugging</strong><p>Go to Developer Options and enable USB Debugging.</p></div></div>
+      <div class="check-item"><span>04</span><div><strong>Check Project Treble Support</strong><p>Verify that your phone supports Project Treble before downloading a GSI.</p></div></div>
+      <div class="check-item"><span>05</span><div><strong>Back Up Your Data</strong><p>GSI installation may erase userdata. Back up photos, files, contacts and other important data.</p></div></div>
+    </div>
+    <div class="download-card"><div><div class="download-label">RECOMMENDED APP</div><h4>Treble Info</h4><p>Use Treble Info to check your device's Treble support, architecture and other GSI-related information.</p></div><a class="download-btn" href="https://github.com/phhusson/treble_info" target="_blank" rel="noopener noreferrer">Download <span>↗</span></a></div>
+  </div></article>
+
+  <article class="guide-section glass"><div class="guide-top"><div class="guide-number">02</div><div><div class="guide-label">PC PREPARATION</div><h3>Prepare your PC</h3></div></div><div class="guide-content">
+    <p>Install the required Android tools and make sure your computer can communicate with the phone through ADB and Fastboot.</p>
+    <div class="guide-checklist">
+      <div class="check-item"><span>01</span><div><strong>Android SDK Platform Tools</strong><p>Install ADB and Fastboot on your computer.</p></div></div>
+      <div class="check-item"><span>02</span><div><strong>USB Drivers</strong><p>Install the appropriate USB drivers so Windows can properly detect your Android device.</p></div></div>
+      <div class="check-item"><span>03</span><div><strong>GSI File</strong><p>Download a GSI that matches your device's architecture, Android version and partition requirements.</p></div></div>
+      <div class="check-item"><span>04</span><div><strong>Stock vbmeta.img</strong><p>Keep the correct stock vbmeta.img from your device firmware when required.</p></div></div>
+    </div>
+    <div class="download-card"><div><div class="download-label">REQUIRED TOOL</div><h4>Android SDK Platform Tools</h4><p>Official ADB and Fastboot tools for Windows, macOS and Linux.</p></div><a class="download-btn" href="https://developer.android.com/tools/releases/platform-tools" target="_blank" rel="noopener noreferrer">Download <span>↗</span></a></div>
+    <div class="download-card"><div><div class="download-label">WINDOWS</div><h4>Google USB Driver</h4><p>Useful for devices that require the Google USB driver for ADB/Fastboot communication.</p></div><a class="download-btn" href="https://developer.android.com/studio/run/oem-usb" target="_blank" rel="noopener noreferrer">Driver <span>↗</span></a></div>
+  </div></article>
+
+  <article class="guide-section glass"><div class="guide-top"><div class="guide-number">03</div><div><div class="guide-label">FLASHING PROCESS</div><h3>How to install the GSI</h3></div></div><div class="guide-content">
+    <p>Once your phone and PC are ready, follow the flashing sequence carefully. Do not disconnect the USB cable while commands are being executed.</p>
+    <div class="process-list">
+      <div class="process-item"><span>01</span><div><strong>Connect the phone</strong><p>Connect the unlocked Android phone to your PC using a reliable USB cable.</p></div></div>
+      <div class="process-item"><span>02</span><div><strong>Open Platform Tools</strong><p>Open a Terminal or Command Prompt inside the folder containing ADB and Fastboot.</p></div></div>
+      <div class="process-item"><span>03</span><div><strong>Enter FastbootD</strong><p>Reboot the phone into FastbootD mode and verify that Fastboot detects the device.</p></div></div>
+      <div class="process-item"><span>04</span><div><strong>Prepare the partitions</strong><p>Follow the command sequence below to prepare the dynamic partitions when required.</p></div></div>
+      <div class="process-item"><span>05</span><div><strong>Flash the GSI</strong><p>Flash the compatible GSI image to the system partition using Fastboot.</p></div></div>
+      <div class="process-item"><span>06</span><div><strong>Wipe userdata</strong><p>Erase userdata when required by the GSI installation process.</p></div></div>
+      <div class="process-item"><span>07</span><div><strong>Reboot</strong><p>Reboot the phone and wait patiently for the first boot.</p></div></div>
+    </div>
+  </div></article>
+
+  <div class="command-intro"><div class="section-label">FLASHING</div><h2>Install the GSI</h2><p>Run the following Fastboot commands in order to flash the GSI. Make sure you understand each command before executing it.</p></div>
+
+  <div class="command-list glass">
+    <div class="command-item"><div class="command-step">Step 01</div><div class="command-description">Reboot the connected phone from Android into FastbootD mode</div><div class="command-card"><div class="command-code">adb reboot fastboot</div><button class="copy-btn" data-copy="adb reboot fastboot">Copy</button></div></div>
+    <div class="command-item"><div class="command-step">Step 02</div><div class="command-description">Re-enter FastbootD mode using the Fastboot interface</div><div class="command-card"><div class="command-code">fastboot reboot fastboot</div><button class="copy-btn" data-copy="fastboot reboot fastboot">Copy</button></div></div>
+    <div class="command-item"><div class="command-step">Step 03</div><div class="command-description">Flash the stock vbmeta image with verification disabled</div><div class="command-card"><div class="command-code">fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img</div><button class="copy-btn" data-copy="fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img">Copy</button></div></div>
+    <div class="command-item"><div class="command-step">Step 04</div><div class="command-description">Erase the existing system partition before flashing the GSI</div><div class="command-card"><div class="command-code">fastboot erase system</div><button class="copy-btn" data-copy="fastboot erase system">Copy</button></div></div>
+    <div class="command-item"><div class="command-step">Step 05</div><div class="command-description">Delete the product logical partition to free dynamic partition space</div><div class="command-card"><div class="command-code">fastboot delete-logical-partition product_a</div><button class="copy-btn" data-copy="fastboot delete-logical-partition product_a">Copy</button></div></div>
+    <div class="command-item"><div class="command-step">Step 06</div><div class="command-description">Delete the alternate product logical partition</div><div class="command-card"><div class="command-code">fastboot delete-logical-partition product_b</div><button class="copy-btn" data-copy="fastboot delete-logical-partition product_b">Copy</button></div></div>
+    <div class="command-item"><div class="command-step">Step 07</div><div class="command-description">Flash the GSI image to the system partition</div><div class="command-card"><div class="command-code">fastboot flash system gsi.img</div><button class="copy-btn" data-copy="fastboot flash system gsi.img">Copy</button></div></div>
+    <div class="command-item"><div class="command-step">Step 08</div><div class="command-description">Erase user data before the first boot</div><div class="command-card"><div class="command-code">fastboot erase userdata</div><button class="copy-btn" data-copy="fastboot erase userdata">Copy</button></div></div>
+    <div class="command-item"><div class="command-step">Step 09</div><div class="command-description">Reboot the phone into Android after flashing</div><div class="command-card"><div class="command-code">fastboot reboot</div><button class="copy-btn" data-copy="fastboot reboot">Copy</button></div></div>
+  </div>
+
+  <div class="safety"><div class="safety-icon">!</div><div><h3>Before You Flash</h3><p>Make sure your bootloader is unlocked, your device supports Project Treble, and the GSI matches your device architecture and Android version. Keep a complete backup of your important data before starting the installation.</p></div></div>
+</div></section>
+
+<section id="troubleshooting"><div class="container">
+  <div class="section-heading"><div class="section-label">TROUBLESHOOTING</div><h2>Not enough space?</h2><p>Some dynamic-partition layouts may require additional space before flashing a GSI.</p></div>
+  <div class="trouble-box"><div class="trouble-title"><span class="warning-icon">!</span>Not enough space to resize partition</div><p>If Fastboot reports <strong>FAILED (remote: 'Not enough space to resize partition')</strong>, the following logical partitions may need to be removed before flashing the GSI, depending on the device layout.</p>
+    <div class="trouble-commands">
+      <div class="trouble-command"><div class="trouble-code">fastboot delete-logical-partition system_ext</div><button class="copy-btn" data-copy="fastboot delete-logical-partition system_ext">Copy</button></div>
+      <div class="trouble-command"><div class="trouble-code">fastboot delete-logical-partition system_ext_a</div><button class="copy-btn" data-copy="fastboot delete-logical-partition system_ext_a">Copy</button></div>
+      <div class="trouble-command"><div class="trouble-code">fastboot delete-logical-partition system_ext_b</div><button class="copy-btn" data-copy="fastboot delete-logical-partition system_ext_b">Copy</button></div>
+      <div class="trouble-command"><div class="trouble-code">fastboot delete-logical-partition product</div><button class="copy-btn" data-copy="fastboot delete-logical-partition product">Copy</button></div>
+      <div class="trouble-command"><div class="trouble-code">fastboot delete-logical-partition product_a</div><button class="copy-btn" data-copy="fastboot delete-logical-partition product_a">Copy</button></div>
+      <div class="trouble-command"><div class="trouble-code">fastboot delete-logical-partition product_b</div><button class="copy-btn" data-copy="fastboot delete-logical-partition product_b">Copy</button></div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="container"><div class="footer-inner"><div class="footer-brand">GSI-GUIDE</div><div class="footer-socials">
+  <a class="social-btn" href="https://facebook.com/MOHAMMADALAMIN2K7" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H8v3h2.1v8h3.4Z"/></svg></a>
+  <a class="social-btn" href="https://t.me/ALAMIN2K7" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.8 4.2 18.7 19c-.2 1-.8 1.2-1.6.8l-4.5-3.3-2.2 2.1c-.2.2-.4.4-.8.4l.3-4.6 8.4-7.6c.4-.3-.1-.5-.6-.2L7.3 13.3l-4.5-1.4c-1-.3-1-1 .2-1.5L20.5 4c.8-.3 1.5.2 1.3.2Z"/></svg></a>
+  <a class="social-btn" href="mailto:mohammadalamin2k7@gmail.com" aria-label="Gmail"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 5.2-8-5.2V6l8 5.2L20 6v2.2Z"/></svg></a>
+</div></div></div></footer>
+
+<script src="script.js"></script>
+</body>
+</html>
